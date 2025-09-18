@@ -45,6 +45,14 @@ app.UseCors("AllowReactApp");
 app.UseAuthorization();
 app.MapControllers();
 
+//Auto-migrate database in development
+if (app.Environment.IsDevelopment())
+{
+    using var scope = app.Services.CreateScope();
+    var context = scope.ServiceProvider.GetRequiredService<FinanceTrackerDbContext>();
+    await context.Database.MigrateAsync();
+}
+
 // var summaries = new[]
 // {
 //     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"

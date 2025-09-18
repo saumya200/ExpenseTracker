@@ -15,7 +15,7 @@ namespace PersonalFinanceTrackerAPI.Domain.DTOs
         string FirstName,
         string LastName,
         string Email,
-        string PassworHash
+        string PasswordHash
     );
 
     public record UpdateUserDto(
